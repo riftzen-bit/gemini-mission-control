@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://raw.githubusercontent.com/google/gemini-logo/main/gemini-logo.png" width="120" alt="Gemini Logo" />
+  <img src="https://upload.wikimedia.org/wikipedia/commons/8/8a/Google_Gemini_logo.svg" width="120" alt="Gemini Logo" />
   <h1>🚀 Gemini Mission Control</h1>
   <p><strong>The Unbreakable, Cross-Platform Autonomous AI Swarm for Gemini CLI</strong></p>
 
