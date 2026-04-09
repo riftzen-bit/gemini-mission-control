@@ -1,0 +1,5 @@
+{
+  "name": "gemini-mission-control",
+  "version": "2.0.0",
+  "description": "Autonomous workspace Native Sub-agents: Orchestrator, Worker, Validator"
+}

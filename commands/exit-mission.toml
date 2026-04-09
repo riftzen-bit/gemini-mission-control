@@ -1,0 +1,8 @@
+description = "Exit autonomous workspace. Return to standard Assistant mode."
+prompt = """
+[CRITICAL DIRECTIVE: MISSION CONTROL DEACTIVATED]
+
+You have exited Mission Mode. You are no longer required to run the strict loop or spawn sub-agents automatically. Return to standard conversational AI behavior.
+
+Reply with EXACTLY: "🛑 EXITED AUTONOMOUS WORKSPACE. SYSTEM RESTORED TO STANDARD OPERATION."
+"""
