@@ -1,0 +1,33 @@
+name: Cross-Platform Validation
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  validate:
+    name: Validate on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Validate Extension Manifest (JSON)
+      run: python -c "import json; json.load(open('gemini-extension.json', 'r', encoding='utf-8'))"
+
+    - name: Validate Enter Mission Command (TOML)
+      run: python -c "import tomllib; tomllib.load(open('commands/enter-mission.toml', 'rb'))"
+
+    - name: Validate Exit Mission Command (TOML)
+      run: python -c "import tomllib; tomllib.load(open('commands/exit-mission.toml', 'rb'))"
