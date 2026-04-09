@@ -1,1 +1,472 @@
-<h1>Hello World</h1><p>Year: 2026</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemini Mission Control | The Autonomous AI Swarm</title>
+    <meta name="description" content="Elevate your Gemini CLI with an unbreakable, cross-platform autonomous AI swarm.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #09090b;
+            --surface-color: #18181b;
+            --border-color: #27272a;
+            --text-primary: #f4f4f5;
+            --text-secondary: #a1a1aa;
+            --accent-glow: rgba(59, 130, 246, 0.5);
+            --accent-blue: #3b82f6;
+            --accent-purple: #8b5cf6;
+            --success: #10b981;
+            --danger: #ef4444;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Decorative Background */
+        .bg-glow {
+            position: fixed;
+            top: -20%;
+            left: -10%;
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            filter: blur(100px);
+            z-index: -1;
+            opacity: 0.5;
+            animation: pulse 10s infinite alternate;
+        }
+
+        .bg-glow.right {
+            top: auto;
+            bottom: -20%;
+            left: auto;
+            right: -10%;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.3) 0%, transparent 70%);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.3; }
+            100% { transform: scale(1.2); opacity: 0.6; }
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .logo-container {
+            display: inline-block;
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .logo-container img {
+            width: 120px;
+            height: auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            background: var(--accent-blue);
+            filter: blur(40px);
+            border-radius: 50%;
+            z-index: 1;
+            opacity: 0.5;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #60a5fa, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.05em;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .badges {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .badge {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .badge.os span { color: var(--text-primary); }
+
+        /* Section Styling */
+        section {
+            margin-bottom: 5rem;
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(to right, var(--accent-blue), var(--accent-purple));
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        /* Architecture Grid */
+        .swarm-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .agent-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        .agent-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .agent-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .agent-card p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 0;
+        }
+
+        .agent-role {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--accent-blue);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        /* Terminal Window */
+        .terminal {
+            background: #000;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            margin-top: 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            position: relative;
+        }
+
+        .terminal-header {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .terminal-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .dot-red { background: #ff5f56; }
+        .dot-yellow { background: #ffbd2e; }
+        .dot-green { background: #27c93f; }
+
+        .cmd { color: var(--accent-blue); }
+        .output { color: var(--success); margin-top: 0.5rem; }
+        .comment { color: var(--text-secondary); }
+
+        /* Installation Steps */
+        .step {
+            display: flex;
+            margin-bottom: 2rem;
+            gap: 1.5rem;
+        }
+
+        .step-number {
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .step-content h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .step-content p {
+            font-size: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .github-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: white;
+            color: black;
+            padding: 1rem 2rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            text-decoration: none;
+            margin-top: 2rem;
+            transition: transform 0.2s;
+        }
+
+        .github-link:hover {
+            transform: scale(1.05);
+        }
+
+        .github-link svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 4rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .highlight {
+            color: var(--accent-blue);
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .container { padding: 2rem 1rem; }
+            section { padding: 2rem 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-glow"></div>
+    <div class="bg-glow right"></div>
+
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <div class="logo-glow"></div>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/8/8a/Google_Gemini_logo.svg" alt="Gemini Logo">
+            </div>
+            <h1>Gemini Mission Control</h1>
+            <p class="subtitle">Elevate your Gemini CLI into an unbreakable, cross-platform autonomous engineering swarm. Safe. Parallel. Unstoppable.</p>
+            
+            <div class="badges">
+                <div class="badge os">🍎 macOS</div>
+                <div class="badge os">🪟 Windows</div>
+                <div class="badge os">🐧 Linux</div>
+            </div>
+
+            <a href="https://github.com/riftzen-bit/gemini-mission-control" class="github-link" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"></path>
+                </svg>
+                View on GitHub
+            </a>
+        </header>
+
+        <section id="installation">
+            <h2>⚡ Quick Installation</h2>
+            <p>Mission Control hooks directly into your local Gemini CLI workspace. No external servers required.</p>
+            
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>Clone the Repository</h3>
+                    <p>Clone this repository directly into your Gemini extensions folder or project workspace.</p>
+                    <div class="terminal">
+                        <div class="terminal-header">
+                            <div class="terminal-dot dot-red"></div>
+                            <div class="terminal-dot dot-yellow"></div>
+                            <div class="terminal-dot dot-green"></div>
+                        </div>
+                        <span class="comment"># Navigate to your workspace</span><br>
+                        <span class="cmd">$</span> git clone https://github.com/riftzen-bit/gemini-mission-control.git<br>
+                    </div>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>Launch the Swarm</h3>
+                    <p>Open your terminal, start the Gemini CLI, and invoke the Mission Controller command.</p>
+                    <div class="terminal">
+                        <div class="terminal-header">
+                            <div class="terminal-dot dot-red"></div>
+                            <div class="terminal-dot dot-yellow"></div>
+                            <div class="terminal-dot dot-green"></div>
+                        </div>
+                        <span class="cmd">$</span> gemini /enter-mission<br>
+                        <span class="output">🚀 AUTONOMOUS WORKSPACE ACTIVATED. SYSTEM GUARDRAILS ENGAGED.</span><br>
+                        <br>
+                        <span class="comment"># Give the swarm a complex task:</span><br>
+                        <span class="cmd">&gt;</span> Build a JWT auth system and update the UI. Run tests when done.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>Exit and Regain Manual Control</h3>
+                    <p>When the task is perfectly executed and validated, exit the loop.</p>
+                    <div class="terminal">
+                        <div class="terminal-header">
+                            <div class="terminal-dot dot-red"></div>
+                            <div class="terminal-dot dot-yellow"></div>
+                            <div class="terminal-dot dot-green"></div>
+                        </div>
+                        <span class="cmd">$</span> gemini /exit-mission<br>
+                        <span class="output">🛑 EXITED AUTONOMOUS WORKSPACE. SYSTEM RESTORED.</span><br>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="architecture">
+            <h2>🧠 The Swarm Architecture</h2>
+            <p>Mission Control divides labor to ensure high performance and absolute safety. No single agent holds all the keys.</p>
+            
+            <div class="swarm-grid">
+                <div class="agent-card">
+                    <span class="agent-role">The Architect</span>
+                    <h3>🗺️ Orchestrator</h3>
+                    <p>Analyzes your request and breaks it down into a highly optimized, parallel execution schedule. Enforces strict file-level isolation.</p>
+                </div>
+                <div class="agent-card">
+                    <span class="agent-role">The Engineer</span>
+                    <h3>🛠️ Worker</h3>
+                    <p>Executes surgical code changes. Can run package managers (`npm install`) but is physically blocked from running tests to prevent "marking its own homework".</p>
+                </div>
+                <div class="agent-card">
+                    <span class="agent-role">The Auditor</span>
+                    <h3>🛡️ Validator</h3>
+                    <p>A ruthless QA engine. Runs compilers, linters, and tests. If a build fails, it kicks a forensic report back to the Worker to self-heal.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="safety">
+            <h2>🔒 Hardware-Level Guardrails</h2>
+            <p>Giving AI write access to your production code is terrifying. We built a mathematically secure perimeter around it.</p>
+            
+            <ul style="list-style-type: none; margin-top: 1.5rem;">
+                <li style="margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 1rem;">
+                    <span style="background: var(--success); color: var(--bg-color); padding: 0.2rem 0.5rem; border-radius: 4px; font-weight: bold; font-size: 0.8rem; margin-top: 0.2rem;">GATE 1</span>
+                    <div>
+                        <strong>Mandatory Backup Protocol</strong><br>
+                        <span class="comment">The Orchestrator is forbidden from planning code changes until it schedules a Git branch or backup creation.</span>
+                    </div>
+                </li>
+                <li style="margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 1rem;">
+                    <span style="background: var(--success); color: var(--bg-color); padding: 0.2rem 0.5rem; border-radius: 4px; font-weight: bold; font-size: 0.8rem; margin-top: 0.2rem;">GATE 2</span>
+                    <div>
+                        <strong>Anti-Race Condition Lock</strong><br>
+                        <span class="comment">Workers code in parallel, but Validators run strictly sequentially. Multiple test suites will never collide and corrupt your build folders.</span>
+                    </div>
+                </li>
+                <li style="margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 1rem;">
+                    <span style="background: var(--danger); color: white; padding: 0.2rem 0.5rem; border-radius: 4px; font-weight: bold; font-size: 0.8rem; margin-top: 0.2rem;">ABORT</span>
+                    <div>
+                        <strong>The Circuit Breaker</strong><br>
+                        <span class="comment">If a specific task fails validation 3 times consecutively, the system pulls the plug. No infinite loops. No wasted tokens.</span>
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+        <footer>
+            <p>Designed for the Gemini CLI Ecosystem. Do No Harm. Verify Everything.</p>
+        </footer>
+    </div>
+
+</body>
+</html>
