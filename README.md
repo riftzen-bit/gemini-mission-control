@@ -4,6 +4,10 @@
   <p><strong>The Unbreakable, Cross-Platform Autonomous AI Swarm for Gemini CLI</strong></p>
 
   <p>
+    🌐 <strong><a href="https://riftzen-bit.github.io/gemini-mission-control/">View Live Website & Documentation</a></strong>
+  </p>
+
+  <p>
     <a href="#architecture">Architecture</a> •
     <a href="#safety-first-zero-loss-protocol">Safety Protocol</a> •
     <a href="#installation">Installation</a> •
